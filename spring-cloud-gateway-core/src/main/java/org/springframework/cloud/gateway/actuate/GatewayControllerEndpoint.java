@@ -159,7 +159,7 @@ http POST :8080/admin/gateway/routes/apiaddreqhead uri=http://httpbin.org:80 pre
 */
 	@PostMapping("/routes/{id}")
 	@SuppressWarnings("unchecked")
-	public Mono<ResponseEntity<Void>> save(@PathVariable String id, @RequestBody Mono<RouteDefinition> route) {
+	public Mono<ResponseEntity<Object>> save(@PathVariable String id, @RequestBody Mono<RouteDefinition> route) {
 		return this.routeDefinitionWriter.save(route.map(r ->  {
 			r.setId(id);
 			log.debug("Saving route: " + route);
